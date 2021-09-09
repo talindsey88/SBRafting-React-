@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,7 +9,7 @@
   }
 }
 
-.App-header {
+.App-splash {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,6 +18,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: center;
 }
 
 .App-link {
@@ -35,4 +32,122 @@
   to {
     transform: rotate(360deg);
   }
+}
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, .card-body>.card-title {
+  font-family: "Copperplate", fantasy;
+}
+
+.card-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+h2 {
+  color: white;
+}
+
+.card-img-overlay .card-title {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.row-content {
+  padding: 50px 0;
+  border-bottom: 1px ridge;
+  min-height: 200px;
+}
+
+.site-footer {
+  background-color: #282c34;
+  padding: 20px 0;
+  color:white;
+}
+
+.jumbotron {
+  margin: 0;
+  padding: 30px;
+  background-color: #282c34;
+  color: white;
+}
+
+.jumbotron h2 {
+  color: white;
+}
+
+.navbar-dark {
+  background-color: #282c34;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: 300ms ease-out;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: 300ms ease-in;
+}
+
+.modalSubmitBtn{
+  float: right;
+  margin-top: 2%;
+}
+
+.slider-wrapper{
+  height: 550px !important;
+}
+.slider{
+  height: 550px !important;
+}
+.carousel{
+  height: 550px;
+}
+.carousel-root{
+  height: 650px;
+}
+#roothome>div.carousel-root>div:last-child{
+  height: 0px;
+}
+.fyaheader { 
+  color: black;
+  text-align: center;
+}
+.fya {
+  margin: 0;
+}
+
+.adform {
+  display: inline-flex;
+  max-width: 60%;
+  align-items: flex-end;
+}
+
+@media(max-width: 600px) {
+  .adform {
+    max-width: 60%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.form-group{
+  padding: 5px;
+}
+
+.col-form-label{
+  white-space: nowrap;
 }
