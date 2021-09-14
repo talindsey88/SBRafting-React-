@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sbrafting/static/css/main.f71aa061.chunk.css",
-    "main.js": "/sbrafting/static/js/main.89928d9a.chunk.js",
-    "main.js.map": "/sbrafting/static/js/main.89928d9a.chunk.js.map",
+    "main.js": "/sbrafting/static/js/main.d657b4b9.chunk.js",
+    "main.js.map": "/sbrafting/static/js/main.d657b4b9.chunk.js.map",
     "runtime-main.js": "/sbrafting/static/js/runtime-main.7828f214.js",
     "runtime-main.js.map": "/sbrafting/static/js/runtime-main.7828f214.js.map",
     "static/css/2.159e9dc1.chunk.css": "/sbrafting/static/css/2.159e9dc1.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.159e9dc1.chunk.css",
     "static/js/2.8c515336.chunk.js",
     "static/css/main.f71aa061.chunk.css",
-    "static/js/main.89928d9a.chunk.js"
+    "static/js/main.d657b4b9.chunk.js"
   ]
 }
