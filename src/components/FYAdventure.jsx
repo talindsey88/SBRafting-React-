@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import { Control, Form, Errors, LocalForm } from "react-redux-form";
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from "reactstrap";
+import { connect } from "react-redux";
+import { actions } from "react-redux-form";
+import { fyadventureFormSubmitted } from "../redux/ActionCreators";
+import { withRouter } from "react-router";
+
 
 const required = val => val && val>0;
 
@@ -17,14 +22,21 @@ class FYAdventure extends Component {
                 destination: false,
                 duration: false,
                 travelMonth: false, 
-            }
+            },
+            formFields: props.formFields
         };
         this.handleSubmit=this.handleSubmit.bind(this);
     }
 
+
     handleSubmit(values) {
         console.log("Current state is: " + JSON.stringify(values));
         alert("Current state is: " + JSON.stringify(values));
+        const payload = {
+            id: parseInt(values.destination) -1
+        };
+        this.props.fyadventureFormSubmitted(payload);
+        this.props.history.push("/destinations");
     }
 
     render() {
@@ -46,11 +58,14 @@ class FYAdventure extends Component {
                                         className="form-control"
                                         validators={{required}}
                                     >
-                                        <option value="0">Select...</option> 
-                                        <option value="1">Desolation Canyon</option> 
-                                        <option value="2">Gates of Lodore</option> 
-                                        <option value="3">Yampa Canyon</option>
-                                        <option value="4">Grand Canyon</option>
+                                        {this.state.formFields ?
+                                            this.state.formFields.filter(f => f.type=="destination").map(f => 
+                                                <option key={f.field.id} value={f.field.id}>
+                                                {f.field.value}
+                                                </option>
+                                                )  
+                                            :<option/>
+                                        }
                                     </Control.select>
                                     <Errors
                                         className="text-danger"
@@ -73,10 +88,14 @@ class FYAdventure extends Component {
                                         className="form-control"
                                         validators={{required}}
                                     >
-                                        <option value="0">Select...</option> 
-                                        <option value="1">2-3 Days </option> 
-                                        <option value="2">4-7 Days</option> 
-                                        <option value="3">8+ Days</option>
+                                        {this.state.formFields ?
+                                            this.state.formFields.filter(f => f.type=="duration").map(f => 
+                                                <option key={f.field.id} value={f.field.id}>
+                                                {f.field.value}
+                                                </option>
+                                                )  
+                                            :<option/>
+                                        }
                                     </Control.select>
                                     <Errors
                                         className="text-danger"
@@ -99,13 +118,14 @@ class FYAdventure extends Component {
                                         className="form-control"
                                         validators={{required}}
                                     >
-                                        <option value="0">Select...</option> 
-                                        <option value="1">April</option> 
-                                        <option value="2">May</option> 
-                                        <option value="3">June</option>
-                                        <option value="4">July</option>
-                                        <option value="4">August</option>
-                                        <option value="4">September</option>
+                                        {this.state.formFields ?
+                                            this.state.formFields.filter(f => f.type=="month").map(f => 
+                                                <option key={f.field.id} value={f.field.id}>
+                                                {f.field.value}
+                                                </option>
+                                                )  
+                                            :<option/>
+                                        }
                                     </Control.select>
                                     <Errors
                                         className="text-danger"
@@ -132,4 +152,15 @@ class FYAdventure extends Component {
         );
     }
 }
-export default FYAdventure;
+
+const mapStateToProps = state => {
+    return {
+        destinations: state.destinations
+    };
+};
+
+const mapDispatchToProps = {
+    fyadventureFormSubmitted: formInfo => fyadventureFormSubmitted(formInfo)
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (FYAdventure));

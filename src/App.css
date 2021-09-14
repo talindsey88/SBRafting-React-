@@ -151,3 +151,20 @@ h2 {
 .col-form-label{
   white-space: nowrap;
 }
+
+.cardCon{
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.frontImgPol{
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.frontImg{
+  width: 100%;
+}
