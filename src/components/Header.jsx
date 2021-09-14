@@ -59,7 +59,7 @@ class Header extends Component {
                 <Navbar dark sticky="top" expand="md">
                     <div className="container">
                         <NavbarBrand className="mr-auto" href="/sbrafting" >
-                            <img src="/img/logo.jpg" height="30" width="30" alt="sbrafting logo"/>
+                            <img src="/sbrafting/img/logo.jpg" height="30" width="30" alt="sbrafting logo"/>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav}/>
                         <Collapse isOpen={this.state.isNavOpen} navbar>

@@ -10,10 +10,6 @@ class Destinations extends Component{
         };
     }
 
-    componentDidUpdate(){
-      //  window.scrollTo(0,0);
-    }
-
     componentDidMount(){
         if(this.props.destinations){
             const newArray = this.state.data.map((d, i) => {

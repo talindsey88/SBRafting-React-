@@ -12,6 +12,7 @@ const CARDSTYLE={
 class Destination extends Component{
     constructor (props){
         super(props);
+        this.myRef= React.createRef();
         this.state={
             isFlipped: props.data.isFlipped,
             data: props.data
@@ -20,13 +21,17 @@ class Destination extends Component{
         this.renderFront=this.renderFront.bind(this);
         this.renderBack=this.renderBack.bind(this);
     }
-    componentDidMount(){
-        if(this.props.data){
+
+    componentDidUpdate(prevProps) {
+        if(!prevProps.data.isFlipped && this.props.data.isFlipped){
+            console.log("flipped =", this.props.data.isFlipped);
             this.setState({
-               isFlipped: this.props.data.isFlipped
+                isFlipped: this.props.data.isFlipped
             });
+            window.scrollTo(0,this.myRef.current);
         }
     }
+
     handleClick(e){
         e.preventDefault();
         this.setState(prevState => ({isFlipped:!prevState.isFlipped}))
@@ -57,7 +62,7 @@ class Destination extends Component{
 
     render(){
         return(
-            <ReactCardFlip isFlipped={this.props.data.isFlipped} flipDirection= "vertical">
+            <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection= "vertical" ref={this.myRef}>
                 {this.renderFront(this.props.data)}
                 {this.renderBack(this.props.data)}
             </ReactCardFlip>
