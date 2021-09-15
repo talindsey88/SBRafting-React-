@@ -12,6 +12,10 @@ export const Destinations = (state={
             const newArray = [...state.destinations];
             newArray[action.payload.id].isFlipped = true;
             return {...state, destinations: newArray};
+        case ActionTypes.RESET_CARDS:
+            console.log("reducer",state.destinations)
+            const resetArray = state.destinations.map(d => ({ isFlipped: action.payload }));
+            return {...state, destinations: resetArray};
         default: 
             return state;
     }

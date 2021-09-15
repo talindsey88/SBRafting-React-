@@ -26,7 +26,8 @@ class Destination extends Component{
         if(!prevProps.data.isFlipped && this.props.data.isFlipped){
             console.log("flipped =", this.props.data.isFlipped);
             this.setState({
-                isFlipped: this.props.data.isFlipped
+                isFlipped: this.props.data.isFlipped,
+                data: this.props.data
             });
             window.scrollTo(0,this.myRef.current);
         }
@@ -63,8 +64,8 @@ class Destination extends Component{
     render(){
         return(
             <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection= "vertical" ref={this.myRef}>
-                {this.renderFront(this.props.data)}
-                {this.renderBack(this.props.data)}
+                {this.renderFront(this.state.data)}
+                {this.renderBack(this.state.data)}
             </ReactCardFlip>
         );
     }

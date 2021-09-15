@@ -21,6 +21,13 @@ class Destinations extends Component{
         }
     }
 
+    componentWillUnmount(){
+        console.log("unmonted")
+        this.props.resetAction();
+    }
+
+
+
     render(){
         return(
             <div className="container">
@@ -40,6 +47,7 @@ class Destinations extends Component{
 }
 
 const mapStateToProps = state => {
+    console.log("state destinations =", state.destinations)
     return {
         destinations: state.destinations.destinations
     };

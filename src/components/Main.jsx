@@ -10,6 +10,7 @@ import IMAGES from "../shared/images";
 import Destinations from "./Destinations";
 import FORM_FIELDS from "../shared/formFields";
 import DESTINATIONS from "../shared/destinations";
+import { fyadventureFormSubmitted, resetCards } from "../redux/ActionCreators";
 
 class Main extends Component{ 
     constructor(props){
@@ -25,11 +26,11 @@ class Main extends Component{
     render() {
         return(
             <div>
-                <HeaderToggle/>
+                <HeaderToggle formAction={this.props.fyadventureFormSubmitted}/>
                 <Switch>
                     <Route exact path="/" component={SplashScreen} />
-                    <Route path="/home" render={() => <Home images={this.state.images} formFields={this.state.formFields}/>} />
-                    <Route path="/destinations" render={() => <Destinations data={this.state.destinations}/>} />
+                    <Route path="/home" render={() => <Home formAction={this.props.fyadventureFormSubmitted} images={this.state.images} formFields={this.state.formFields}/>} />
+                    <Route path="/destinations" render={() => <Destinations resetAction={this.props.resetCards} data={this.state.destinations}/>} />
                     <Redirect to="/home"/>
                 </Switch>
                 <FooterToggle/>
@@ -39,4 +40,16 @@ class Main extends Component{
 
 }
 
-export default withRouter(connect(null, null)(Main));
+
+const mapStateToProps = state => {
+    return {
+        
+    };
+};
+
+const mapDispatchToProps = {
+    fyadventureFormSubmitted: formInfo => fyadventureFormSubmitted(formInfo),
+    resetCards: () => resetCards()
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

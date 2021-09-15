@@ -3,13 +3,13 @@ import {  useLocation } from 'react-router-dom';
 import Header from './Header';
 
 
-const HeaderToggle = () => {
+const HeaderToggle = (props) => {
         console.log('location = ', useLocation());
         if (useLocation().pathname === '/'){
             return null;
         }
         return(
-               <Header/>
+               <Header formAction={props.formAction}/>
         );
 }
 

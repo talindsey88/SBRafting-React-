@@ -8,7 +8,7 @@ class Home extends Component {
         return(
             <div className="" id="roothome">
                 <MyCarousel images={this.props.images}/>
-                <FYAdventure formFields={this.props.formFields}/>
+                <FYAdventure formFields={this.props.formFields} formAction={this.props.formAction}/>
             </div>
         );
     }

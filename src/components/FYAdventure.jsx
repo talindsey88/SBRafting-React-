@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import { Control, Form, Errors, LocalForm } from "react-redux-form";
-import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from "reactstrap";
-import { connect } from "react-redux";
-import { actions } from "react-redux-form";
-import { fyadventureFormSubmitted } from "../redux/ActionCreators";
 import { withRouter } from "react-router";
 
 
@@ -35,7 +31,7 @@ class FYAdventure extends Component {
         const payload = {
             id: parseInt(values.destination) -1
         };
-        this.props.fyadventureFormSubmitted(payload);
+        this.props.formAction(payload);
         this.props.history.push("/destinations");
     }
 
@@ -153,14 +149,5 @@ class FYAdventure extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        destinations: state.destinations
-    };
-};
 
-const mapDispatchToProps = {
-    fyadventureFormSubmitted: formInfo => fyadventureFormSubmitted(formInfo)
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps) (FYAdventure));
+export default withRouter(FYAdventure);

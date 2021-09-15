@@ -5,6 +5,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations';
 import FORM_FIELDS from "../shared/formFields";
+import { withRouter } from "react-router";
+import { Control, Errors, LocalForm } from "react-redux-form";
+
+
+const required = val => val && val>0;
+
+
 
 const Bounce=styled.div`animation: 2s ${keyframes`${bounce}`} infinite`;
 
@@ -35,11 +42,17 @@ class Header extends Component {
         });
     }
 
-    handleSubmit(e){
-        e.preventDefault();
+    
+
+    handleSubmit(values){
+        console.log("form submitted =", values)
         this.toggleModal();
         //eventually want to post and redirect 
-        alert(`Hello world, form submited. ${e.target}`);
+        const payload = {
+            id: parseInt(values.destination) -1
+        };
+        this.props.formAction(payload);
+        this.props.history.push("/destinations");
     }
 
     render() {
@@ -98,11 +111,18 @@ class Header extends Component {
                         Find a Destination!
                     </ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup>
-                                <Label htmlFor="destination">Destination</Label>
-                                <Input type="select" name="destination" id="destination">
-                                {this.state.formFields ?
+                    <LocalForm className="" onSubmit={values => this.handleSubmit(values)}>
+                            <div className="form-group col-md-6">
+                                <Label htmlFor="destination" md={2}>Destination</Label>
+                                <div>
+                                    <Control.select 
+                                        model=".destination"
+                                        id="destination"
+                                        name="destination"
+                                        className="form-control"
+                                        validators={{required}}
+                                    >
+                                        {this.state.formFields ?
                                             this.state.formFields.filter(f => f.type=="destination").map(f => 
                                                 <option key={f.field.id} value={f.field.id}>
                                                 {f.field.value}
@@ -110,12 +130,29 @@ class Header extends Component {
                                                 )  
                                             :<option/>
                                         }
-                                </Input>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="duration">Duration</Label>
-                                <Input type="select" name="duration" id="duration">
-                                {this.state.formFields ?
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".destination"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required:"Please Select a Destination"
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group col-md-6">
+                                <Label htmlFor="duration" md={2}>Duration</Label>
+                                <div>
+                                    <Control.select
+                                        model=".duration"
+                                        id="duration"
+                                        name="duration"
+                                        className="form-control"
+                                        validators={{required}}
+                                    >
+                                        {this.state.formFields ?
                                             this.state.formFields.filter(f => f.type=="duration").map(f => 
                                                 <option key={f.field.id} value={f.field.id}>
                                                 {f.field.value}
@@ -123,12 +160,29 @@ class Header extends Component {
                                                 )  
                                             :<option/>
                                         }
-                                </Input>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="travelmonth">Travel Month</Label>
-                                <Input type="select" name="travelmonth" id="travelmonth">
-                                {this.state.formFields ?
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".duration"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required:"Please Select a Duration"
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-group col-md-6">
+                                <Label htmlFor="travelMonth" md={2}>Travel Month</Label>
+                                <div>
+                                    <Control.select
+                                        model=".travelMonth"
+                                        id="travelMonth"
+                                        name="travelMonth"
+                                        className="form-control"
+                                        validators={{required}}
+                                    >
+                                        {this.state.formFields ?
                                             this.state.formFields.filter(f => f.type=="month").map(f => 
                                                 <option key={f.field.id} value={f.field.id}>
                                                 {f.field.value}
@@ -136,12 +190,25 @@ class Header extends Component {
                                                 )  
                                             :<option/>
                                         }
-                                </Input>
-                            </FormGroup>
-                            <div className="modalSubmitBtn">
-                                <Button type="submit" value="submit" color="primary">View Trips</Button>
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".travelMonth"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required:"Please Select a Travel Month"
+                                        }}
+                                    />
+                                </div>
                             </div>
-                        </Form>
+                            <div className="form-group col-md-6">
+                                <div className="modalSubmitBtn">
+                                    <Button type="submit" value="submit" color="primary">View Trips</Button>
+                                </div>
+                            </div>
+                        </LocalForm>
+                        
                     </ModalBody>
                 </Modal>
             </React.Fragment>
@@ -149,4 +216,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);
