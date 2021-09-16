@@ -63,7 +63,7 @@ class Header extends Component {
                         <div className= "row">
                             <div className= "col">
                                 <Bounce>
-                                <h1>SBRafting-slogan here</h1>
+                                <h1>SBRafting-A Better Way To Raft</h1>
                                 </Bounce>
                             </div>
                         </div>

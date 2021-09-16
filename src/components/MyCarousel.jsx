@@ -25,7 +25,7 @@ class MyCarousel extends Component {
                     return this.renderImage(i);
             });
 
-            return(
+            return( 
                 <Carousel autoPlay dynamicHeight infiniteLoop>
                     {renderImage}
                 </Carousel>
